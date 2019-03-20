@@ -28,3 +28,7 @@ export function loadCDNConfig () {
     }
 }
 
+export function getAssetsAbsPath () {
+    return path.join( process.cwd(), cdnConfig.staticDir );
+}
+

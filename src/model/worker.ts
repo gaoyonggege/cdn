@@ -5,6 +5,7 @@
 */
 
 export interface Worker {
-                        
+    init () : void;
+    pushCDN ( files: string[] ) : Promise<boolean>;
 }
 

@@ -16,5 +16,5 @@ export default async function startup () {
         throw new Error(`${validateRet}`);
     }
     // 3. 整合&工作
-    CDN.run();
+    await CDN.run();
 }

@@ -5,6 +5,7 @@
 */
 
 export interface ProjectConfig {
+    type: string,
     root: string,
     projectName: string,
     projectVersion: string,
