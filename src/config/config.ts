@@ -23,7 +23,8 @@ export default {
         projectVersion: 'v1',
     },
 
-    //
-    cdnConfigFileName: 'cdnConfig.json',
+    //项目配置文件名
+    projectConfigFileName: 'cdnConfig.json',
 
+    
 }

@@ -8,27 +8,36 @@ import * as path from 'path';
 import { ProjectConfig } from './model/projectConfig';
 import config from './config/config';
 
-let cdnConfig: ProjectConfig = null;
+// 项目配置
+let projectConfig: ProjectConfig = null;
 
+/**
+ * 得到项目配置
+ */
 export function getCDNConfig () {
-    return cdnConfig;
+    return projectConfig;
 }
 
+/**
+ * 加载项目配置
+ */
 export function loadCDNConfig () {
     try {
         let cwd: string = process.cwd();
 
-        let cdnConfigFilePath: string = path.resolve(cwd, `${config.cdnConfigFileName}`);
+        let cdnConfigFilePath: string = path.resolve(cwd, `${config.projectConfigFileName}`);
 
-        cdnConfig = require(cdnConfigFilePath);
+        projectConfig = require(cdnConfigFilePath);
 
-        return cdnConfig;
+        return projectConfig;
     } catch ( e ) {
         throw new Error(e);
     }
 }
 
+/**
+ * 得到资产所在目录的绝对路径
+ */
 export function getAssetsAbsPath () {
-    return path.join( process.cwd(), cdnConfig.staticDir );
+    return path.join( process.cwd(), projectConfig.staticDir );
 }
-

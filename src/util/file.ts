@@ -1,11 +1,13 @@
 /**
-* 路径相关
+* 文件相关
 *   @author: gaoyonggege@github.com
 *   @date: 2019.03.20
 */
 import * as path from 'path';
 import chalk from 'chalk';
-import glob from 'glob';
+import * as glob from 'glob';
+
+import { CDNFile } from '../model/lang';
 
 
 /**
@@ -45,5 +47,14 @@ export function getFileNameByFilePath ( filePath: string ) {
     let fileName = tmp[ tmp.length-1 ];
 
     return fileName;
+}
+
+/**
+ * 新建一个 cdn file obj
+ * @param file: 
+ */
+export function makeCDNFile ( file: string ) : CDNFile {
+
+    return null;
 }
 
