@@ -1,0 +1,35 @@
+{
+  "name": "@gygg/cdn",
+  "version": "0.0.1",
+  "description": "fe cdn管理工具",
+  "main": "src/index.ts",
+  "bin": {
+    "cdn": "dist/index.js"
+  },
+  "scripts": {
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaoyonggege/cdn.git"
+  },
+  "keywords": [
+    "fe",
+    "cdn",
+    "node",
+    "typescript"
+  ],
+  "author": "gaoyonggege@github.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gaoyonggege/cdn/issues"
+  },
+  "homepage": "https://github.com/gaoyonggege/cdn#readme",
+  "devDependencies": {
+    "@types/node": "^11.11.4",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "glob": "^7.1.3"
+  }
+}
