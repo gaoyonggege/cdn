@@ -12,6 +12,7 @@ export const CLIENT = 'CLIENT';
 export const ALIYUN = 'aliyun';  // 阿里云
 export const TENCENT = 'tencent';  //腾讯云
 export const QINIU = 'qiniu';   // 七牛云
+export const clouds = [ ALIYUN, TENCENT, QINIU ];
 
 
 

@@ -3,6 +3,10 @@
 *   @author: gaoyonggege@github.com
 *   @date: 2019.03.19
 */
+/// <reference path="../declare/directory-exists/index.d.ts" />
+
+const directoryExists = require('directory-exists');
+
 import { Worker } from '../model/worker';
 import { ProjectConfig } from '../model/projectConfig';
 import { projectConfig, getAssetsAbsPath } from '../runtime';
@@ -26,6 +30,12 @@ export class CDN {
         await this.worker.init( (<any>config)[projectConfig.type] );
 
         const assetsAbsPath = getAssetsAbsPath();
+        // 判断路径是否存在
+        const dirExists: boolean = await directoryExists(assetsAbsPath);
+        if ( !dirExists ) {
+            throw new Error(`static目录不存在!请检查cdnConfig.json文件static字段`);
+        }
+
         this.files = await getFilesByDirPath(assetsAbsPath);
 
         this.prepared = true;

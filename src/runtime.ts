@@ -33,5 +33,6 @@ export function loadCDNConfig () {
  * 得到资产所在目录的绝对路径
  */
 export function getAssetsAbsPath () {
-    return path.join( process.cwd(), projectConfig.staticDir );
+    const cwd: string = process.cwd();
+    return path.join( cwd, projectConfig.staticDir );
 }

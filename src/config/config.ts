@@ -6,7 +6,14 @@
 import * as TYPES from '../type';
 
 export default {
-    
+    [ TYPES.ALIYUN ]: {
+        region: '',
+        accessKeyId: '',
+        accessKeySecret: '',
+        bucket: '',
+        // cdn domain + 部分路径前缀
+        cdnDomain: ''
+    },
     
     [ TYPES.QINIU ]: {
         accessKey: '',
