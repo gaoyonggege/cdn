@@ -7,8 +7,9 @@ import * as path from 'path';
 import chalk from 'chalk';
 import * as glob from 'glob';
 
+import config from '../config/config';
 import { CDNFile } from '../model/lang';
-
+import { projectConfig, getAssetsAbsPath } from '../runtime';
 
 /**
  * 得到目录下的全部文件
@@ -51,10 +52,26 @@ export function getFileNameByFilePath ( filePath: string ) {
 
 /**
  * 新建一个 cdn file obj
- * @param file: 
+ * @param file: 文件的本地绝对路径
  */
 export function makeCDNFile ( file: string ) : CDNFile {
+    if ( !file ) {
+        return null;
+    }
 
-    return null;
+    const cdnFile: CDNFile = {
+        filePath: file,       
+        cdnPath: '',
+        uri: '',
+    };
+
+    const assetsAbsPath: string = getAssetsAbsPath();
+    const fileRelativePath: string = file.replace(assetsAbsPath,'');
+
+    cdnFile.cdnPath = path.join(projectConfig.name, projectConfig.version, fileRelativePath);
+    const cloud = (<any>config)[projectConfig.type];
+    cdnFile.uri = path.join( cloud.cdnDomain, cdnFile.cdnPath );
+
+    return cdnFile;
 }
 

@@ -17,4 +17,6 @@ export default async function startup () {
     }
     // 3. 整合&工作
     await CDN.run();
+
+    return 'cdn上传成功^^^^';
 }

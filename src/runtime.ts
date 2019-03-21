@@ -9,14 +9,8 @@ import { ProjectConfig } from './model/projectConfig';
 import config from './config/config';
 
 // 项目配置
-let projectConfig: ProjectConfig = null;
+export let projectConfig: ProjectConfig = null;
 
-/**
- * 得到项目配置
- */
-export function getCDNConfig () {
-    return projectConfig;
-}
 
 /**
  * 加载项目配置

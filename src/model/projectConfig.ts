@@ -7,8 +7,8 @@
 export interface ProjectConfig {
     type: string,
     root: string,
-    projectName: string,
-    projectVersion: string,
+    name: string,
+    version: string,
     staticDir: string,
 }
 

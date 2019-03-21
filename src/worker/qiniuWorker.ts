@@ -6,10 +6,12 @@
 import * as qiniu from 'qiniu';
 
 import { Worker } from '../model/worker';
-
+import { CDNFile } from '../model/lang';
+import { makeCDNFile } from '../util/file';
+import { infoLog, errorLog } from '../util/console';
 
 export class QiniuWorder implements Worker {
-    private mac: any = null; 
+    private mac: any = null;
     private uploadToken: any = null;
     private formUploader: any = null;
     private putExtra: any = null;
@@ -44,18 +46,36 @@ export class QiniuWorder implements Worker {
             return false;
         }
 
-        for ( let filePath of files ) {
-            //let file = util.calculateFileCDNPath( filePath,cdnPushConfig );
+        for ( let file of files ) {
+            let cdnFile = makeCDNFile( file );
 
-            //await this.pushFile( file,filePath );
+            await this.pushFile( cdnFile );
         }
         
         return true;
     }
 
-    pushFile ( key: string, localFile: string ) : Promise<boolean> {
+    /**
+     * 单文件 cdn 推送动作
+     * @param cdnFile 
+     */
+    pushFile ( cdnFile: CDNFile ) : Promise<boolean> {
         return new Promise( ( resolve, reject ) => {
-
+            this.formUploader.putFile( this.uploadToken, cdnFile.cdnPath, cdnFile.filePath, 
+                this.putExtra, (respErr: any,respBody: any, respInfo: any) => {
+                if ( respErr ) {
+                    throw respErr;
+                }
+                
+                if (respInfo.statusCode == 200) {
+                    infoLog(`${cdnFile.filePath} upload success, uri : ${cdnFile.uri}`);
+                    resolve( true );
+                } else {
+                    errorLog(`${cdnFile.filePath} upload err : ${respInfo.statusCode} : ${respBody}`);
+                    resolve( false );
+                }
+            } );
         } );
     }
 }
+
