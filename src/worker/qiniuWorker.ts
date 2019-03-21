@@ -60,20 +60,23 @@ export class QiniuWorder implements Worker {
      * @param cdnFile 
      */
     pushFile ( cdnFile: CDNFile ) : Promise<boolean> {
+        const _this = this;
+        
         return new Promise( ( resolve, reject ) => {
-            this.formUploader.putFile( this.uploadToken, cdnFile.cdnPath, cdnFile.filePath, 
-                this.putExtra, (respErr: any,respBody: any, respInfo: any) => {
-                if ( respErr ) {
-                    throw respErr;
-                }
-                
-                if (respInfo.statusCode == 200) {
-                    infoLog(`${cdnFile.filePath} upload success, uri : ${cdnFile.uri}`);
-                    resolve( true );
-                } else {
-                    errorLog(`${cdnFile.filePath} upload err : ${respInfo.statusCode} : ${respBody}`);
-                    resolve( false );
-                }
+            _this.formUploader.putFile( _this.uploadToken, cdnFile.cdnPath,
+                cdnFile.filePath, _this.putExtra,
+                (respErr: any,respBody: any, respInfo: any) => {
+                    if ( respErr ) {
+                        throw respErr;
+                    }
+                    
+                    if (respInfo.statusCode == 200) {
+                        infoLog(`${cdnFile.filePath} upload success, uri : ${cdnFile.uri}`);
+                        resolve( true );
+                    } else {
+                        errorLog(`${cdnFile.filePath} upload err : ${respInfo.statusCode} : ${respBody}`);
+                        reject( false );
+                    }
             } );
         } );
     }

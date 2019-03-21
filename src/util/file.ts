@@ -10,6 +10,7 @@ import * as glob from 'glob';
 import config from '../config/config';
 import { CDNFile } from '../model/lang';
 import { projectConfig, getAssetsAbsPath } from '../runtime';
+import { errorLog } from '../util/console';
 
 /**
  * 得到目录下的全部文件
@@ -25,7 +26,7 @@ export function getFilesByDirPath ( dirPath: string ) : Promise<string[]> {
 
         glob( pattern,{dot: false,nodir: true},(err: any, files: string[]) => {
             if ( err ) {
-                console.log(`util.js err : ${err}`);
+                errorLog(`util.js err : ${err}`);
                 return resolve([]);
             }
 
@@ -68,8 +69,8 @@ export function makeCDNFile ( file: string ) : CDNFile {
     const assetsAbsPath: string = getAssetsAbsPath();
     const fileRelativePath: string = file.replace(assetsAbsPath,'');
 
-    cdnFile.cdnPath = path.join(projectConfig.name, projectConfig.version, fileRelativePath);
     const cloud = (<any>config)[projectConfig.type];
+    cdnFile.cdnPath = path.join(cloud.root, projectConfig.name, projectConfig.version, fileRelativePath);
     cdnFile.uri = path.join( cloud.cdnDomain, cdnFile.cdnPath );
 
     return cdnFile;

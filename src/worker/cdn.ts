@@ -5,9 +5,10 @@
 */
 import { Worker } from '../model/worker';
 import { ProjectConfig } from '../model/projectConfig';
-import { getCDNConfig, getAssetsAbsPath } from '../runtime';
+import { projectConfig, getAssetsAbsPath } from '../runtime';
 import { getFilesByDirPath } from '../util/file';
 import { createWorker } from '../worker/workerFactory';
+import config from '../config/config';
 
 export class CDN {
     private prepared: boolean = false;
@@ -21,12 +22,13 @@ export class CDN {
      * 准备
      */
     async prepare () {
-        let cdnConfig: ProjectConfig = getCDNConfig();
-        this.worker = createWorker(<any>cdnConfig);
-        await this.worker.init(cdnConfig);
+        this.worker = createWorker(projectConfig.type);
+        await this.worker.init( (<any>config)[projectConfig.type] );
 
         const assetsAbsPath = getAssetsAbsPath();
         this.files = await getFilesByDirPath(assetsAbsPath);
+
+        this.prepared = true;
     }
 
     /**
@@ -40,7 +42,7 @@ export class CDN {
             throw new Error(`file length error`);
         }
                                                             
-        this.worker.pushCDN(this.files);
+        await this.worker.pushCDN(this.files);
     }
 
     /**

@@ -9,9 +9,9 @@ export const SERVER = 'SERVER';
 export const CLIENT = 'CLIENT';
 
 // 云类型
-export const ALIYUN = 'ALIYUN';  // 阿里云
-export const TENCENT = 'TENCENT';  //腾讯云
-export const QINIU = 'QINIU';   // 七牛云
+export const ALIYUN = 'aliyun';  // 阿里云
+export const TENCENT = 'tencent';  //腾讯云
+export const QINIU = 'qiniu';   // 七牛云
 
 
 
