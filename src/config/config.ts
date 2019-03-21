@@ -9,13 +9,13 @@ export default {
     
     
     [ TYPES.QINIU ]: {
-        accessKey: 'luQSxXwqLmO_aPLAtKevU1pKUAD8dKJuHnVr_2ip',
-        secretKey: 'a91KhDZUCfkCTQbcBSM97nhbVbwLPGD-CJbC6aJR',
-        bucket: 'wyfe',
+        accessKey: '',
+        secretKey: '',
+        bucket: '',
         // 上传到bucket根目录下的哪个目录层级中
-        root: 'project/',
+        root: '',
         // cdn domain + 部分路径前缀
-        cdnDomain: 'https://fecdn.weiyankeji.cn/'
+        cdnDomain: ''
     },
     
     //
