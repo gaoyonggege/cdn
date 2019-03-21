@@ -70,7 +70,7 @@ export function makeCDNFile ( file: string ) : CDNFile {
     const fileRelativePath: string = file.replace(assetsAbsPath,'');
 
     const cloud = (<any>config)[projectConfig.type];
-    cdnFile.cdnPath = path.join(cloud.root, projectConfig.name, projectConfig.version, fileRelativePath);
+    cdnFile.cdnPath = path.join(projectConfig.root, projectConfig.name, projectConfig.version, fileRelativePath);
     cdnFile.uri = path.join( cloud.cdnDomain, cdnFile.cdnPath );
 
     return cdnFile;

@@ -6,14 +6,19 @@
 import * as TYPES from '../type';
 
 export default {
-    
+    [ TYPES.ALIYUN ]: {
+        region: 'oss-cn-beijing',
+        accessKeyId: 'LTAI8m5aQevDxeOC',
+        accessKeySecret: 'rQ7poFXbhAWUDaxQ2MUvqJXE5wgoHi',
+        bucket: 'wy-fe',
+        // cdn domain + 部分路径前缀
+        cdnDomain: 'https://fe-alicdn.weiyankeji.cn/'
+    },
     
     [ TYPES.QINIU ]: {
         accessKey: 'luQSxXwqLmO_aPLAtKevU1pKUAD8dKJuHnVr_2ip',
         secretKey: 'a91KhDZUCfkCTQbcBSM97nhbVbwLPGD-CJbC6aJR',
         bucket: 'wyfe',
-        // 上传到bucket根目录下的哪个目录层级中
-        root: 'project/',
         // cdn domain + 部分路径前缀
         cdnDomain: 'https://fecdn.weiyankeji.cn/'
     },
