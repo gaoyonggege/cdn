@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "outDir": "dist",
+        "outDir": "../../dist/cli",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true
     },
     "files": [
-        "src/index.ts"
+        "index.ts"
     ]
 }

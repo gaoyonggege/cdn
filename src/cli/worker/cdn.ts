@@ -11,7 +11,7 @@ import { Worker } from '../model/worker';
 import { ProjectConfig } from '../model/projectConfig';
 import { projectConfig, getAssetsAbsPath } from '../runtime';
 import { getFilesByDirPath } from '../util/file';
-import { createWorker } from '../worker/workerFactory';
+import { createWorker } from './workerFactory';
 import config from '../config/config';
 
 export class CDN {
